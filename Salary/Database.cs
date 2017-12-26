@@ -20,6 +20,7 @@ namespace Salary
             return _dbInstance ?? (_dbInstance = new Database());
         }
 
+        //验证登录
         public void ValidateLogin(string id, string password)
         {
             _sqlConnection.Open();
