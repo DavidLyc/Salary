@@ -10,17 +10,7 @@ namespace Salary
             InitializeComponent();
         }
 
-        private void UserID_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void Login_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Password_TextChanged(object sender, EventArgs e)
         {
 
         }
