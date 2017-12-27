@@ -32,7 +32,7 @@ namespace Salary
             }
             else if (password.Trim().Length == 0)
             {
-                MessageBox.Show(@"员工号不能为空！");
+                MessageBox.Show(@"密码不能为空！");
             }
             else
             {
