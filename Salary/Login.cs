@@ -25,7 +25,15 @@ namespace Salary
             }
             else
             {
-                Database.GetDbInstance().ValidateLogin(userId, password);
+                if (Database.GetDbInstance().ValidateLogin(userId, password))
+                {
+                    this.Hide();
+                    new Manage().Show();
+                }
+                else
+                {
+                    MessageBox.Show(@"员工号或密码错误!");
+                }
             }
         }
 
