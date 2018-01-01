@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using Salary.db;
 
-namespace Salary
+namespace Salary.form
 {
     public partial class Login : Form
     {

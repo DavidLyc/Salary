@@ -10,13 +10,13 @@ namespace Salary.model
         public string Education { get; set; }
         public string JobTitle { get; set; }  //职称
         public string HireDate { get; set; }
-        public string PostId { get; set; }   //岗位编号
+        public string PostName { get; set; }   //岗位编号
         public string Salary { get; set; }
         public string Password { get; set; }
-        public string DepartmentId { get; set; }   //部门编号
+        public string DepartmentName { get; set; }   //部门编号
 
-        public User(string id, string name, string sex, string education, string jobTitle, string hireDate, string postId
-                    , string password, string departmentId)
+        public User(string id, string name, string sex, string education, string jobTitle, string hireDate, string postName
+                      , string password, string departmentName)
         {
             Id = id;
             Name = name;
@@ -24,9 +24,9 @@ namespace Salary.model
             Education = education;
             JobTitle = jobTitle;
             HireDate = hireDate;
-            PostId = postId;
+            PostName = postName;
             Password = password;
-            DepartmentId = departmentId;
+            DepartmentName = departmentName;
         }
 
     }

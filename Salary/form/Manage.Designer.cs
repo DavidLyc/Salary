@@ -1,4 +1,4 @@
-﻿namespace Salary
+﻿namespace Salary.form
 {
     partial class Manage
     {

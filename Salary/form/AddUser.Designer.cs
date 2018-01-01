@@ -1,4 +1,4 @@
-﻿namespace Salary
+﻿namespace Salary.form
 {
     partial class AddUser
     {
@@ -129,12 +129,13 @@
             "生产部",
             "办公室",
             "财务部",
-            "经营部",
-            "化验室"});
+            "技术部",
+            "业务部"});
             this.departmentBox.Location = new System.Drawing.Point(140, 281);
             this.departmentBox.Name = "departmentBox";
             this.departmentBox.Size = new System.Drawing.Size(155, 28);
             this.departmentBox.TabIndex = 7;
+            this.departmentBox.SelectedIndexChanged += new System.EventHandler(this.DepartmentBox_SelectedIndexChanged);
             // 
             // label5
             // 
