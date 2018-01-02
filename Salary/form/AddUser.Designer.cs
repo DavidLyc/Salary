@@ -47,6 +47,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.sexBox = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.salaryBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -252,11 +254,29 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.ConfirmClick);
             // 
+            // label10
+            // 
+            this.label10.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.label10.Location = new System.Drawing.Point(383, 281);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(100, 23);
+            this.label10.TabIndex = 19;
+            this.label10.Text = "基本工资";
+            // 
+            // salaryBox
+            // 
+            this.salaryBox.Location = new System.Drawing.Point(464, 284);
+            this.salaryBox.Name = "salaryBox";
+            this.salaryBox.Size = new System.Drawing.Size(155, 25);
+            this.salaryBox.TabIndex = 20;
+            // 
             // AddUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(673, 483);
+            this.Controls.Add(this.salaryBox);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.sexBox);
             this.Controls.Add(this.label9);
@@ -304,5 +324,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox sexBox;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox salaryBox;
     }
 }

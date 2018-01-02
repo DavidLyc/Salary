@@ -24,6 +24,9 @@ namespace Salary.form
             {
                 Database.GetDbInstance().AddChargeback(new model.Chargeback(employeeId, money, reason));
                 MessageBox.Show(@"操作成功！");
+                textBox1.Clear();
+                textBox2.Clear();
+                textBox3.Clear();
             }
         }
 

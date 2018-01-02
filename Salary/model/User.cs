@@ -11,12 +11,12 @@ namespace Salary.model
         public string JobTitle { get; set; }  //职称
         public string HireDate { get; set; }
         public string PostName { get; set; }   //岗位编号
-        public string Salary { get; set; }
         public string Password { get; set; }
         public string DepartmentName { get; set; }   //部门编号
+        public float BasicSalary { get; set; }     //基本工资
 
         public User(string id, string name, string sex, string education, string jobTitle, string hireDate, string postName
-                      , string password, string departmentName)
+                      , string password, string departmentName, float basicSalary)
         {
             Id = id;
             Name = name;
@@ -27,7 +27,10 @@ namespace Salary.model
             PostName = postName;
             Password = password;
             DepartmentName = departmentName;
+            BasicSalary = basicSalary;
         }
+
+        public User() { }
 
     }
 }

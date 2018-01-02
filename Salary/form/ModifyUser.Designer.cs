@@ -47,13 +47,15 @@
             this.label9 = new System.Windows.Forms.Label();
             this.sexBox = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.salaryBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.label1.Location = new System.Drawing.Point(74, 33);
+            this.label1.Location = new System.Drawing.Point(74, 96);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 23);
             this.label1.TabIndex = 0;
@@ -62,7 +64,7 @@
             // nameBox
             // 
             this.nameBox.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.nameBox.Location = new System.Drawing.Point(140, 33);
+            this.nameBox.Location = new System.Drawing.Point(140, 96);
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(155, 27);
             this.nameBox.TabIndex = 1;
@@ -139,7 +141,7 @@
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.label5.Location = new System.Drawing.Point(74, 92);
+            this.label5.Location = new System.Drawing.Point(400, 97);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(51, 23);
             this.label5.TabIndex = 8;
@@ -155,7 +157,7 @@
             "本科",
             "硕士",
             "博士"});
-            this.educationBox.Location = new System.Drawing.Point(140, 92);
+            this.educationBox.Location = new System.Drawing.Point(464, 97);
             this.educationBox.Name = "educationBox";
             this.educationBox.Size = new System.Drawing.Size(155, 28);
             this.educationBox.TabIndex = 9;
@@ -164,7 +166,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.label6.Location = new System.Drawing.Point(383, 93);
+            this.label6.Location = new System.Drawing.Point(64, 37);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(61, 23);
             this.label6.TabIndex = 10;
@@ -173,10 +175,11 @@
             // userIdBox
             // 
             this.userIdBox.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.userIdBox.Location = new System.Drawing.Point(464, 93);
+            this.userIdBox.Location = new System.Drawing.Point(140, 36);
             this.userIdBox.Name = "userIdBox";
             this.userIdBox.Size = new System.Drawing.Size(155, 27);
             this.userIdBox.TabIndex = 11;
+            this.userIdBox.TextChanged += new System.EventHandler(this.UserIdBox_TextChanged);
             // 
             // label7
             // 
@@ -251,11 +254,30 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button_Confirm);
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.label10.Location = new System.Drawing.Point(383, 286);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(78, 23);
+            this.label10.TabIndex = 19;
+            this.label10.Text = "基本工资";
+            // 
+            // salaryBox
+            // 
+            this.salaryBox.Location = new System.Drawing.Point(464, 284);
+            this.salaryBox.Name = "salaryBox";
+            this.salaryBox.Size = new System.Drawing.Size(155, 25);
+            this.salaryBox.TabIndex = 20;
+            // 
             // ModifyUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(673, 483);
+            this.Controls.Add(this.salaryBox);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.sexBox);
             this.Controls.Add(this.label9);
@@ -303,6 +325,8 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox sexBox;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox salaryBox;
     }
 
 }

@@ -24,12 +24,17 @@ namespace Salary.form
             {
                 MessageBox.Show(@"员工号或密码不能为空！");
             }
+            else if (userId.Trim().Equals("admin") && password.Trim().Equals("123"))
+            {
+                this.Hide();
+                new Manage().Show();
+            }
             else
             {
                 if (Database.GetDbInstance().ValidateLogin(userId, password))
                 {
                     this.Hide();
-                    new Manage().Show();
+                    new WatchSalary(userId).Show();
                 }
                 else
                 {

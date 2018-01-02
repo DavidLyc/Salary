@@ -32,6 +32,7 @@ namespace Salary.form
             var postName = postBox.Text.Trim();
             var password = passwordBox.Text;
             var departmentName = departmentBox.Text;
+            var salary = salaryBox.Text;
             if (name.Trim().Length == 0)
             {
                 MessageBox.Show(@"姓名不能为空！");
@@ -44,13 +45,18 @@ namespace Salary.form
             {
                 MessageBox.Show(@"密码不能为空！");
             }
+            else if (salary.Trim().Length == 0)
+            {
+                MessageBox.Show(@"基本工资不能为空！");
+            }
             else if (Database.GetDbInstance().IsUserIdExist(id))
             {
                 MessageBox.Show(@"该员工号已存在！");
             }
             else
             {
-                var user = new User(id, name, sex, education, jobTitle, hireDate, postName, password, departmentName);
+                var user = new User(id, name, sex, education, jobTitle, hireDate, postName, password, departmentName
+                    , Convert.ToSingle(salary));
                 Database.GetDbInstance().AddUser(user);
                 if (MessageBox.Show(@"添加成功") == DialogResult.None)
                 {

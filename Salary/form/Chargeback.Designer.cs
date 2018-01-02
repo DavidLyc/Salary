@@ -40,9 +40,9 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.label1.Location = new System.Drawing.Point(121, 58);
+            this.label1.Location = new System.Drawing.Point(111, 59);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 26);
+            this.label1.Size = new System.Drawing.Size(106, 26);
             this.label1.TabIndex = 0;
             this.label1.Text = "扣款员工号";
             // 
@@ -57,9 +57,9 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.label2.Location = new System.Drawing.Point(132, 109);
+            this.label2.Location = new System.Drawing.Point(122, 110);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 23);
+            this.label2.Size = new System.Drawing.Size(95, 23);
             this.label2.TabIndex = 2;
             this.label2.Text = "扣款原因";
             // 
@@ -74,9 +74,9 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.label3.Location = new System.Drawing.Point(132, 163);
+            this.label3.Location = new System.Drawing.Point(122, 162);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 23);
+            this.label3.Size = new System.Drawing.Size(95, 23);
             this.label3.TabIndex = 4;
             this.label3.Text = "扣款金额";
             // 

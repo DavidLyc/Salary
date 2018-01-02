@@ -19,5 +19,11 @@ namespace Salary.model
             ChargebackContent = chargebackContent;
         }
 
+        public Chargeback(string chargebackMoney, string chargebackContent)
+        {
+            ChargebackMoney = chargebackMoney;
+            ChargebackContent = chargebackContent;
+        }
+
     }
 }

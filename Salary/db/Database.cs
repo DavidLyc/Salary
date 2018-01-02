@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 using Salary.model;
 
 namespace Salary.db
@@ -13,13 +15,17 @@ namespace Salary.db
         private const string Sem = "'";
         private const string LoginSql = "SELECT COUNT(*) FROM [salary].[dbo].[user] WHERE ";
         private const string AddUserSql = "INSERT INTO [salary].[dbo].[user] (employeeID,employeeName,employeeSex" +
-                                          ",education,jobTitle,hiredDate,postName,departmentName, password) VALUES (";
+                                          ",education,jobTitle,hiredDate,postName,departmentName,password,salary) VALUES (";
         private const string IsUserIdExistSql = "SELECT COUNT(*) FROM [salary].[dbo].[user] WHERE employeeID=";
         private const string GetPostsInDepartmentSql = "SELECT postName FROM [salary].[dbo].[post] WHERE departmentName=";
         private const string UpdateUserSql = "UPDATE [salary].[dbo].[user] SET ";
+        private const string GetUserSql = "SELECT employeeID,employeeName,employeeSex,education,jobTitle,hiredDate,postName"
+                                          + ",departmentName,password,salary FROM [salary].[dbo].[user] WHERE employeeID=";
         private const string AddChargebackSql = "INSERT INTO [salary].[dbo].[chargeback] (chargebackEmployeeID," +
                                                 "chargebackMoney,chargebackContent) VALUES (";
-
+        private const string GetAllowanceByPostNameSql = "SELECT postAllowance FROM [salary].[dbo].[post] WHERE postName=";
+        private const string GetCharbackSql = "SELECT chargebackContent,chargebackMoney FROM [salary].[dbo].[chargeback]"
+                                              + "WHERE chargebackEmployeeID=";
 
         private Database()
         {
@@ -70,16 +76,52 @@ namespace Salary.db
                                             + Sem + user.HireDate + Sem + Comma
                                             + Sem + user.PostName + Sem + Comma
                                             + Sem + user.DepartmentName + Sem + Comma
-                                            + Sem + user.Password + "');", _sqlConnection);
+                                            + Sem + user.Password + Sem + Comma
+                                            + Sem + user.BasicSalary + "');", _sqlConnection);
             sqlCommand.ExecuteNonQuery();
             _sqlConnection.Close();
+        }
+
+        //得到员工信息
+        public User GetUser(string userId)
+        {
+            _sqlConnection.Open();
+            var sqlCommand = new SqlCommand(GetUserSql + Sem + userId + Sem, _sqlConnection);
+            var reader = sqlCommand.ExecuteReader();
+            reader.Read();
+            var user = new User
+            {
+                Id = reader["employeeID"].ToString(),
+                Name = reader["employeeName"].ToString(),
+                Sex = reader["employeeSex"].ToString(),
+                Education = reader["education"].ToString(),
+                JobTitle = reader["jobTitle"].ToString(),
+                HireDate = reader["hiredDate"].ToString(),
+                PostName = reader["postName"].ToString(),
+                DepartmentName = reader["departmentName"].ToString(),
+                Password = reader["password"].ToString(),
+                BasicSalary = Convert.ToSingle(reader["salary"].ToString())
+            };
+            _sqlConnection.Close();
+            return user;
         }
 
         //修改用户
         public void UpdateUser(User user)
         {
             _sqlConnection.Open();
-            //            var sqlCommand = new SqlCommand(IsUserIdExistSql + userId, _sqlConnection);
+            var sqlCommand = new SqlCommand(UpdateUserSql
+                                  + "employeeName=" + Sem + user.Name + Sem + Comma
+                                  + "employeeSex=" + Sem + user.Sex + Sem + Comma
+                                  + "education=" + Sem + user.Education + Sem + Comma
+                                  + "jobTitle=" + Sem + user.JobTitle + Sem + Comma
+                                  + "hiredDate=" + Sem + user.HireDate + Sem + Comma
+                                  + "postName=" + Sem + user.PostName + Sem + Comma
+                                  + "departmentName=" + Sem + user.DepartmentName + Sem + Comma
+                                  + "password=" + Sem + user.Password + Sem + Comma
+                                  + "salary=" + user.BasicSalary
+                                  + " WHERE employeeID=" + Sem + user.Id + Sem, _sqlConnection);
+            sqlCommand.ExecuteNonQuery();
             _sqlConnection.Close();
         }
 
@@ -87,7 +129,7 @@ namespace Salary.db
         public bool IsUserIdExist(string userId)
         {
             _sqlConnection.Open();
-            var sqlCommand = new SqlCommand(IsUserIdExistSql + userId, _sqlConnection);
+            var sqlCommand = new SqlCommand(IsUserIdExistSql + Sem + userId + Sem, _sqlConnection);
             var reader = sqlCommand.ExecuteReader();
             reader.Read();
             var ret = !reader[""].ToString().Equals("0");
@@ -95,15 +137,45 @@ namespace Salary.db
             return ret;
         }
 
+        //添加扣款
         public void AddChargeback(Chargeback chargeback)
         {
             _sqlConnection.Open();
-            var sqlCommand = new SqlCommand(IsUserIdExistSql +
+            var sqlCommand = new SqlCommand(AddChargebackSql +
                                             Sem + chargeback.ChargebackEmployeeId + Sem + Comma
                                             + chargeback.ChargebackMoney + Comma
                                             + Sem + chargeback.ChargebackContent + "')", _sqlConnection);
             sqlCommand.ExecuteNonQuery();
             _sqlConnection.Close();
+        }
+
+        //根据岗位得到岗位津贴
+        public float GetAllowanceByPostName(string postName)
+        {
+            _sqlConnection.Open();
+            var sqlCommand = new SqlCommand(GetAllowanceByPostNameSql + Sem + postName.Trim() + Sem, _sqlConnection);
+            var reader = sqlCommand.ExecuteReader();
+            reader.Read();
+            var allowance = Convert.ToSingle(reader["postAllowance"]);
+            _sqlConnection.Close();
+            return allowance;
+        }
+
+        //根据员工ID获得扣款
+        public List<Chargeback> GetChargebacksById(string userId)
+        {
+            _sqlConnection.Open();
+            var sqlCommand = new SqlCommand(GetCharbackSql + userId, _sqlConnection);
+            var reader = sqlCommand.ExecuteReader();
+            var chargbackList = new List<Chargeback>();
+            while (reader.Read())
+            {
+                var chargeback = new Chargeback(reader["chargebackMoney"].ToString()
+                    , reader["chargebackContent"].ToString().Trim());
+                chargbackList.Add(chargeback);
+            }
+            _sqlConnection.Close();
+            return chargbackList;
         }
 
     }
